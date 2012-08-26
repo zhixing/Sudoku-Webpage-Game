@@ -1,0 +1,129 @@
+User Guide:
+
+If this is your first time to our system, simply click the "Sign Up" button and register as a player.
+
+If you've registered, go to "Log In & Play" and start the adventure.
+
+During the game, you can always save your current session, or resume from last saved if there's any.
+
+After you finished filling all the cells, click "Check my answers" to see your result.
+
+After that, if you want to save the score, don't forget to click "Update my score" to update your current score in our database system.
+
+To log out, simply click any button on the panal above the page, e.g. "Home", "Sign Up", etc.
+
+Your score is calculated according to how many cells you filled up and how many mistakes you made. The details is as follows:
+
+Suppose you filled up n cells, of which m is wrong, then let k=n-m,
+
+For the portion between 0  and 10, you gain 1 mark per cell.
+For the portion between 10 and 25, you gain 2 mark per cell.
+For the portion between 25 and 50, you gain 4 mark per cell.
+For the portion between 50 and 60, you gain 8 mark for per cell.
+For the portion between 60 and above, you gain 16 mark per cell.
+
+Thus, for example, if you filled up 57 cells with 2 mistakes, k=n-m=55, hence the score is: 10*1 + 15*2 + 25*4 + 5*8 = 180.
+
+If you have any doubts, feel free to contact me via zhixing135@hotmail.com  
+
+Have fun there!
+
+
+
+
+
+
+
+Summary:
+
+This is my CVWO assignment final-submission. 
+
+It's the first time that I build up a webpage. It's quite challenging for me at the beginning. I spent a few days going through the training session, learned about the skills I need. Then I started doing it. I encountered a great number of questions and bugs during the process, and I tried my best to come up with solutions by tracking codes, thinking and searching online. After all the headaches are gone, I gained a lot of programming skills in PHP and mySQL, and I learned a lot of cool stuff.
+
+Here's a summary of the system:
+
+1. Database shcema: 
+	name: SudokuData, 
+	table: Records, 
+	columns: Series, Name, Email, Score, Quiz, Ans, Input.
+
+2. How to play: Please refer to the user manual.
+
+3. Remaining issues that might lead to unsecurity:
+
+	3.1 I'm not familiar with the use of mysql_close(), it's usage may not be entirely correct.
+
+	3.2 I didn't use SESSION variable. What I did was passing the name and password by submitting "form".
+
+	3.3 There's no "log out" function. I asked the user to click "Home" or others to log out.
+	
+	
+The file system:
+
++include 	[all that needed in the game design]
++static  	[all that needed in the web page design]
++sudoku_data    [Sudoku game sets]
+
+index.html [uses iframe to call the sub-frames]
+	|	
+	|
+	|	|home.html [picutre gallary]
+	|	|
+	|	|
+	|	|sign_up.html [fill up form]-------------insert.php [insert into database]	
+	|	|
+	|	|
+	--------|log_in.html [log in form]---------------authoriaztion.php [verify the user && select difficulty level]---------game.php [new_game]
+		|						|
+		|						|
+		|leaderboard.html [retrieve data]		-------resume game------game.php [old_game]
+		|
+		|
+		|about_us.html [about the author]
+
+
+
+
+game.php [extract sudoku data, fill in the 9*9 form]
+	|	
+	|
+	|	|include clock.js [display clock]
+	|	|
+	|	|
+	|	|include javascript.js [provides functions for checing and diaplaying answer]
+	|	|
+	|	|
+	--------|include config [info to log in database]
+		|
+		|include ui.php [filling up the 9*9 form]
+		|
+		|Button:{Clear all}----->clearAll();
+		|
+		|Button:{Show answers}----->showAnswer();
+		|
+		|Button:{Check my ansers}----->checkAnswer();
+		|
+		|Button:{Update my score}----->update_score.php [update the scores]-------authoriaztion.php ---------game.php [new_game]
+		|						|
+		|						|
+		|						-------resume game------game.php [old_game]
+		|
+		|Button:{Save game}----->save.php [save current data]--------game.php [old_game]
+		|
+		|Button:{Resume from last saved}----->game.php
+		|
+		|BUtton:{Start a new session}----->authorization.php
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
